@@ -14,7 +14,7 @@ function validateData(textToConvert, toCase) {
   if (!textToConvert || typeof textToConvert !== 'string') {
     errorObject.errors.push(
       errorObjectCreator(
-        `Text to convert is required.Correct request is:"/<TEXT_TO_CONVERT>?toCase=<CASE_NAME>`,
+        `Text to convert is required. Correct request is: "/<TEXT_TO_CONVERT>?toCase=<CASE_NAME>".`,
       ),
     );
   }
@@ -22,12 +22,12 @@ function validateData(textToConvert, toCase) {
   if (!toCase || typeof toCase !== 'string') {
     errorObject.errors.push(
       errorObjectCreator(
-        `toCase" query param is required. Correct request is: "/<TEXT_TO_CONVERT>?toCase=<CASE_NAME>`,
+        `"toCase" query param is required. Correct request is: "/<TEXT_TO_CONVERT>?toCase=<CASE_NAME>".`,
       ),
     );
   }
 
-  if (!cases.includes(toCase)) {
+  if (toCase && !cases.includes(toCase)) {
     errorObject.errors.push(
       errorObjectCreator(
         `This case is not supported. Available cases: SNAKE, KEBAB, CAMEL, PASCAL, UPPER.`,
@@ -35,7 +35,7 @@ function validateData(textToConvert, toCase) {
     );
   }
 
-  return [Boolean(!errorObject.length), errorObject];
+  return [Boolean(!errorObject.errors.length), errorObject];
 }
 
 module.exports = {

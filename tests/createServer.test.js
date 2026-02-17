@@ -65,8 +65,6 @@ describe('createServer', () => {
 
         const data = JSON.parse(body);
 
-        console.log(data);
-
         expect(data).toEqual({
           errors: [
             {
